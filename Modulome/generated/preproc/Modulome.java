@@ -86,7 +86,7 @@ public class Modulome extends processing.core.PApplet
 	private List<Module> modules;
 	private int[] colours;
 	private int index = -1;
-	private int modsize = 350;
+	private int modsize = 450;
 	private boolean display;
 	private int buttondown;
 	private int mouseisin;
@@ -115,6 +115,7 @@ public class Modulome extends processing.core.PApplet
 	public void setup() {
 
 		cp5 = new ControlP5(this);
+		cp5.setFont(createFont("ComicSansMS-Bold-22", (float) (modsize * 0.04), true));
 		modules = new ArrayList<Module>();
 		this.println(RWMidi.getOutputDevices());
 

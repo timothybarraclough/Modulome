@@ -109,7 +109,6 @@ public class EncoderModule extends AbstractModule{
 		
 		
 		g.strokeWeight(2);
-		//g.noFill();
 		g.fill(getColour());
 		g.ellipse(1+x+(getmodsize()/2),
 				1+y+(getmodsize()/2),
@@ -117,9 +116,7 @@ public class EncoderModule extends AbstractModule{
 				getmodsize()*9/10);
 		g.fill(getColour() + 0x00222222);
 		
-		g.noStroke();
-	//	g.strokeWeight(15);
-		
+		g.noStroke();		
 		for(int i = 0; i < 32; i++){
 			if(encoderlights[i] == 1)
 		g.arc(1+getmodsize()/2+x, 
