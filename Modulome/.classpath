@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="lib" path="code/controlP5.jar"/>
+	<classpathentry kind="lib" path="code/core.jar"/>
+	<classpathentry kind="lib" path="code/log4j.jar"/>
+	<classpathentry kind="lib" path="code/rwmidi.jar"/>
+	<classpathentry kind="lib" path="code/serial.jar"/>
+	<classpathentry kind="lib" path="code/oscP5.jar"/>
+	<classpathentry kind="lib" path="code/xbee-api-0.9.jar"/>
+	<classpathentry kind="src" path="generated/preproc"/>
+	<classpathentry kind="con" path="/org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 6 (MacOS X Default)">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Modulome/code"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="code/RXTXcomm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Modulome/code"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="generated/compiler"/>
+</classpath>
