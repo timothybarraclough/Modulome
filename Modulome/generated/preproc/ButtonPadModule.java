@@ -331,9 +331,9 @@ public class ButtonPadModule extends AbstractModule {
 		midisettings.hide();
 		oscsettings.hide();
 
-		ohplus = (ID%12);
-		owplus = (ID%12);
-		otimes = (ID%12);
+		ohplus = osctypeh[ID%12];
+		owplus = osctypew[ID%12];
+		otimes = osctypex[ID%12];
 	}
 
 	@Override
@@ -374,20 +374,11 @@ public class ButtonPadModule extends AbstractModule {
 
 			controls.show();
 		}
-
-
-
-
-
-		//DO SOMETHING WITH i
 		if(isExternalFeedback){
-
-
 
 			int a = 0;
 			int b = 0;
 			boolean sendsomejunk = false;
-
 
 			for (int i = 0; i < 16; i++){
 
@@ -665,72 +656,10 @@ public class ButtonPadModule extends AbstractModule {
 		}
 		else if(thecontrol == 83){
 
-			if((theevent.getValue()) == 0){
-				owplus = 0;
-				ohplus = 0;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 1){
-				owplus = 4;
-				ohplus = 0;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 2){
-				owplus = 0;
-				ohplus = 4;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 3){
-				owplus = 4;
-				ohplus = 4;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 4){
-				owplus = 0;
-				ohplus = 0;
-				otimes = 2;
-			}
-			else if((theevent.getValue()) == 5){
-				owplus = 0;
-				ohplus = 0;
-				otimes = 1;
+			owplus = osctypew[(int) theevent.getValue()];
+			ohplus = osctypeh[(int) theevent.getValue()];
+			otimes = osctypex[(int) theevent.getValue()];
 
-			}
-			else if((theevent.getValue()) == 6){
-				owplus = 4;
-				ohplus = 0;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 7){
-				owplus = 8;
-				ohplus = 0;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 8){
-				owplus = 12;
-				ohplus = 0;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 9){
-				owplus = 0;
-				ohplus = 4;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 10){
-				owplus = 4;
-				ohplus = 4;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 11){
-				owplus = 8;
-				ohplus = 4;
-				otimes = 1;
-			}
-			else if((theevent.getValue()) == 12){
-				owplus = 12;
-				ohplus = 4;
-				otimes = 1;
-			}
 		}
 
 
@@ -762,38 +691,42 @@ public class ButtonPadModule extends AbstractModule {
 
 	public void processOSC(int x, int y, int l) {
 
-		if (isoscfeedback){
+		if (isExternalFeedback){
+			if (isoscfeedback){
 
-			if ((x >= owplus) && (y >= ohplus)){
-				if ((x/otimes) - owplus < 4 && ((y/otimes) - ohplus) < 4){
+				if ((x >= owplus) && (y >= ohplus)){
+					if ((x/otimes) - owplus < 4 && ((y/otimes) - ohplus) < 4){
 
 
-					ledstate[((x/otimes) - owplus) + (4* ((y/otimes) - ohplus))] = l;
+						ledstate[((x/otimes) - owplus) + (4* ((y/otimes) - ohplus))] = l;
+					}
 				}
 			}
 		}
 	}
 
 	public void processOSCcol(int x, int y, int l){
+		if (isExternalFeedback){
 
-		if (isoscfeedback){
+			if (isoscfeedback){
 
-			if ((x >= owplus) && ( x < (owplus + 4))){
-				//IF the offset is within the button range
-				if (y < (ohplus+4)){
+				if ((x >= owplus) && ( x < (owplus + 4))){
+					//IF the offset is within the button range
+					if (y < (ohplus+4)){
 
-					for(int i = (y-ohplus); i < 4; i++) {
-						if ( l  <= 1){
-							if (i >= 0){
-								if ((i * 4) + (x - owplus) < 16){
-									ledstate[(i * 4) + (x - owplus)] =  l;
+						for(int i = (y-ohplus); i < 4; i++) {
+							if ( l  <= 1){
+								if (i >= 0){
+									if ((i * 4) + (x - owplus) < 16){
+										ledstate[(i * 4) + (x - owplus)] =  l;
+									}
 								}
 							}
-						}
-						else if ( l  > 1){
-							if (i >= 0){
-								if ((i * 4) + (x - owplus) < 16){
-									ledstate[(i * 4) + (x - owplus)] =  ((l & (1 << (ohplus+i))) > 0)? 1 : 0;
+							else if ( l  > 1){
+								if (i >= 0){
+									if ((i * 4) + (x - owplus) < 16){
+										ledstate[(i * 4) + (x - owplus)] =  ((l & (1 << (ohplus+i))) > 0)? 1 : 0;
+									}
 								}
 							}
 						}
@@ -804,24 +737,27 @@ public class ButtonPadModule extends AbstractModule {
 	}
 
 	public void processOSCrow(int x, int y, int l) {
-		if (isoscfeedback){
+		if (isExternalFeedback){
 
-			if ((y >= ohplus) && ( y < (ohplus + 4))){
-				//IF the offset is within the button range
-				if (x < (owplus+4)){
+			if (isoscfeedback){
 
-					for(int i = (x-owplus); i < 4; i++) {
-						if ( l  <= 1){
-							if (i >= 0){
-								if ((i) + ((y - ohplus)*4) < 16){
-									ledstate[(i) + ((y - ohplus)*4)] =  l;
+				if ((y >= ohplus) && ( y < (ohplus + 4))){
+					//IF the offset is within the button range
+					if (x < (owplus+4)){
+
+						for(int i = (x-owplus); i < 4; i++) {
+							if ( l  <= 1){
+								if (i >= 0){
+									if ((i) + ((y - ohplus)*4) < 16){
+										ledstate[(i) + ((y - ohplus)*4)] =  l;
+									}
 								}
 							}
-						}
-						else if ( l  > 1){
-							if (i >= 0){
-								if ((i * 4) + (y - ohplus) < 16){
-									ledstate[(i) + ((y - ohplus)*4)] =  ((l & (1 << (owplus+i))) > 0)? 1 : 0;
+							else if ( l  > 1){
+								if (i >= 0){
+									if ((i * 4) + (y - ohplus) < 16){
+										ledstate[(i) + ((y - ohplus)*4)] =  ((l & (1 << (owplus+i))) > 0)? 1 : 0;
+									}
 								}
 							}
 						}
@@ -832,9 +768,12 @@ public class ButtonPadModule extends AbstractModule {
 	}
 
 	public void processOSCall(int l) {
-		if (isoscfeedback){
-			for (int i = 0; i < 16; i++){
-				ledstate[i] = l;
+		if (isExternalFeedback){
+
+			if (isoscfeedback){
+				for (int i = 0; i < 16; i++){
+					ledstate[i] = l;
+				}
 			}
 
 		}

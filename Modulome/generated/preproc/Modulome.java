@@ -86,7 +86,7 @@ public class Modulome extends processing.core.PApplet
 	private List<Module> modules;
 	private int[] colours;
 	private int index = -1;
-	private int modsize = 450;
+	private int modsize = 320;
 	private boolean display;
 	private int buttondown;
 	private int mouseisin;
@@ -637,7 +637,6 @@ private void changeoscinfo () {
 		}
 	}
 	private void ringrange(){
-		println();
 		for (Module m : modules){
 			if (m instanceof EncoderModule){
 
