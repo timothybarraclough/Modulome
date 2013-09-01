@@ -693,13 +693,14 @@ public class ButtonPadModule extends AbstractModule {
 
 		if (isExternalFeedback){
 			if (isoscfeedback){
-
-				if ((x >= owplus) && (y >= ohplus)){
+				if ((x%otimes == 0) && (y%otimes == 0)){
+				if ((x/otimes >= owplus) && (y/otimes >= ohplus)){
 					if ((x/otimes) - owplus < 4 && ((y/otimes) - ohplus) < 4){
 
 
 						ledstate[((x/otimes) - owplus) + (4* ((y/otimes) - ohplus))] = l;
 					}
+				}
 				}
 			}
 		}
@@ -710,22 +711,26 @@ public class ButtonPadModule extends AbstractModule {
 
 			if (isoscfeedback){
 
-				if ((x >= owplus) && ( x < (owplus + 4))){
-					//IF the offset is within the button range
-					if (y < (ohplus+4)){
+				if (x%2 == 0){
 
-						for(int i = (y-ohplus); i < 4; i++) {
-							if ( l  <= 1){
-								if (i >= 0){
-									if ((i * 4) + (x - owplus) < 16){
-										ledstate[(i * 4) + (x - owplus)] =  l;
+
+					if ((x/otimes >= owplus) && ( x/otimes < (owplus + 4))){
+						//IF the offset is within the button range
+						if (y/otimes < (ohplus+4)){
+
+							for(int i = ((y/otimes)-ohplus); i < 4; i++) {
+								if ( l  <= 1){
+									if (i >= 0){
+										if ((i * 4) + ((x/otimes) - owplus) < 16){
+											ledstate[(i * 4) + ((x/otimes) - owplus)] =  l;
+										}
 									}
 								}
-							}
-							else if ( l  > 1){
-								if (i >= 0){
-									if ((i * 4) + (x - owplus) < 16){
-										ledstate[(i * 4) + (x - owplus)] =  ((l & (1 << (ohplus+i))) > 0)? 1 : 0;
+								else if ( l  > 1){
+									if (i >= 0){
+										if ((i * 4) + ((x/otimes) - owplus) < 16){
+											ledstate[(i * 4) + ((x/otimes) - owplus)] =  ((l & (1 << (ohplus+i))) > 0)? 1 : 0;
+										}
 									}
 								}
 							}
@@ -741,22 +746,25 @@ public class ButtonPadModule extends AbstractModule {
 
 			if (isoscfeedback){
 
-				if ((y >= ohplus) && ( y < (ohplus + 4))){
-					//IF the offset is within the button range
-					if (x < (owplus+4)){
+				if (y%otimes == 0){
 
-						for(int i = (x-owplus); i < 4; i++) {
-							if ( l  <= 1){
-								if (i >= 0){
-									if ((i) + ((y - ohplus)*4) < 16){
-										ledstate[(i) + ((y - ohplus)*4)] =  l;
+					if ((y/otimes >= ohplus) && ( y/otimes < (ohplus + 4))){
+						//IF the offset is within the button range
+						if (x/otimes < (owplus+4)){
+
+							for(int i = ((x/otimes)-owplus); i < 4; i++) {
+								if ( l  <= 1){
+									if (i >= 0){
+										if ((i) + (((y/otimes) - ohplus)*4) < 16){
+											ledstate[(i) + (((y/otimes) - ohplus)*4)] =  l;
+										}
 									}
 								}
-							}
-							else if ( l  > 1){
-								if (i >= 0){
-									if ((i * 4) + (y - ohplus) < 16){
-										ledstate[(i) + ((y - ohplus)*4)] =  ((l & (1 << (owplus+i))) > 0)? 1 : 0;
+								else if ( l  > 1){
+									if (i >= 0){
+										if ((i * 4) + ((y/otimes) - ohplus) < 16){
+											ledstate[(i) + (((y/otimes) - ohplus)*4)] =  ((l & (1 << (owplus+i))) > 0)? 1 : 0;
+										}
 									}
 								}
 							}

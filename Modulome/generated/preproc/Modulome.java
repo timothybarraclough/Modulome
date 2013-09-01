@@ -63,7 +63,7 @@ public class Modulome extends processing.core.PApplet
 {
 	/* Fields */
 
-	private boolean xbeeOn = false;
+	private boolean xbeeOn = true;
 
 
 
@@ -248,7 +248,7 @@ public class Modulome extends processing.core.PApplet
 
 	static public void main(String args[]) {
 		//PApplet.main(new String[] { "--bgcolor=#000000", "Modulome"});
-		JFrame f = new JFrame("Modulome Serial Guy");
+		JFrame f = new JFrame("Modulome Serial Daemon");
 		f.setBackground(Color.black);
 
 		Modulome m = new Modulome(f);
