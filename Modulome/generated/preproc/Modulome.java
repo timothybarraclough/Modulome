@@ -76,7 +76,7 @@ public class Modulome extends processing.core.PApplet
 	private OscP5 oscP5;
 	private NetAddress myRemoteLocation;
 	private int port = 8080;
-	private String pre = "40h";
+	public String pre = "40h";
 
 
 
@@ -117,7 +117,7 @@ public class Modulome extends processing.core.PApplet
 		cp5 = new ControlP5(this);
 		cp5.setFont(createFont("ComicSansMS-Bold-22", (float) (modsize * 0.04), true));
 		modules = new ArrayList<Module>();
-		this.println(RWMidi.getOutputDevices());
+	//	this.println(RWMidi.getOutputDevices());
 
 
 

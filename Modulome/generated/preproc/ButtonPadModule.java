@@ -62,7 +62,7 @@ public class ButtonPadModule extends AbstractModule {
 		oscP5 = oscar;
 		//myRemoteLocation = mrl;
 		SerialOsc = true;
-		pre = "mlr";
+		pre = that.pre;
 
 		// SETTINGS GROUP // ID 0
 		controls =  cp5.addGroup("Module "+addr+ " Settings")
