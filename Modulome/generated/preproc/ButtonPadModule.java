@@ -719,14 +719,7 @@ public class ButtonPadModule extends AbstractModule {
 						if (y/otimes < (ohplus+4)){
 
 							for(int i = ((y/otimes)-ohplus); i < 4; i++) {
-								if ( l  <= 1){
-									if (i >= 0){
-										if ((i * 4) + ((x/otimes) - owplus) < 16){
-											ledstate[(i * 4) + ((x/otimes) - owplus)] =  l;
-										}
-									}
-								}
-								else if ( l  > 1){
+								
 									if (i >= 0){
 										if ((i * 4) + ((x/otimes) - owplus) < 16){
 											ledstate[(i * 4) + ((x/otimes) - owplus)] =  ((l & (1 << (ohplus+i))) > 0)? 1 : 0;
@@ -739,7 +732,7 @@ public class ButtonPadModule extends AbstractModule {
 				}
 			}
 		}
-	}
+	
 
 	public void processOSCrow(int x, int y, int l) {
 		if (isExternalFeedback){
@@ -753,14 +746,9 @@ public class ButtonPadModule extends AbstractModule {
 						if (x/otimes < (owplus+4)){
 
 							for(int i = ((x/otimes)-owplus); i < 4; i++) {
-								if ( l  <= 1){
-									if (i >= 0){
-										if ((i) + (((y/otimes) - ohplus)*4) < 16){
-											ledstate[(i) + (((y/otimes) - ohplus)*4)] =  l;
-										}
-									}
-								}
-								else if ( l  > 1){
+
+									
+
 									if (i >= 0){
 										if ((i * 4) + ((y/otimes) - ohplus) < 16){
 											ledstate[(i) + (((y/otimes) - ohplus)*4)] =  ((l & (1 << (owplus+i))) > 0)? 1 : 0;
@@ -773,7 +761,7 @@ public class ButtonPadModule extends AbstractModule {
 				}
 			}
 		}
-	}
+	
 
 	public void processOSCall(int l) {
 		if (isExternalFeedback){

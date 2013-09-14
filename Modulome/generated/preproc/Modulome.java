@@ -107,6 +107,9 @@ public class Modulome extends processing.core.PApplet
 		modcol.put(23, 0xFF041B76);
 		modcol.put(22, 0xFFAF8719);
 		modcol.put(0, 0xFF95310C);
+		modcol.put(18, 0xFF13712D);
+		modcol.put(17, 0xFFAD1515);
+		
 		//index = 1;
 	}
 
@@ -384,7 +387,7 @@ public class Modulome extends processing.core.PApplet
 
 					else if (addr >= 16) {
 						modules.add(new ButtonPadModule(index,c , modsize, addr, this,cp5,midiout,midiin,oscP5,myRemoteLocation));
-
+println(addr);
 					}
 					//modules.get(addr).processdata(data);
 					setSize((index >= 4) ? 4 * modsize : index * modsize + modsize, (index/4) * modsize+modsize);
