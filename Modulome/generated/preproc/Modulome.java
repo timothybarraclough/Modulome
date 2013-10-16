@@ -116,19 +116,37 @@ public class Modulome extends processing.core.PApplet
 
 	/* Methods */
 	public void setup() {
-
+		
 		cp5 = new ControlP5(this);
+		frameguy.setSize(modsize, modsize);
+
 		cp5.setFont(createFont("ComicSansMS-Bold-22", (float) (modsize * 0.04), true));
 		modules = new ArrayList<Module>();
 	//	this.println(RWMidi.getOutputDevices());
 
 
+		 Object[] possibleValues = RWMidi.getOutputDeviceNames();
+		 Object output = JOptionPane.showInputDialog(null,
 
+		         "Midi Output", "Output",
+
+		         JOptionPane.INFORMATION_MESSAGE, null,
+
+		         possibleValues, possibleValues[0]);
+		 
+		 Object[] possibleinValues = RWMidi.getInputDeviceNames();
+		 Object input = JOptionPane.showInputDialog(null,
+
+		         "MidiInput", "Input",
+
+		         JOptionPane.INFORMATION_MESSAGE, null,
+
+		         possibleinValues, possibleinValues[0]);
 
 		//SETUP MIDI JUNK
-		midiout = RWMidi.getOutputDevice("Modulome Apple Inc.").createOutput();
+		midiout = RWMidi.getOutputDevice((String) output).createOutput();
 		//midiout = RWMidi.getOutputDevices()[2].createOutput();
-		midiin = RWMidi.getInputDevice("PD OUT Apple Inc.").createInput();
+		midiin = RWMidi.getInputDevice((String) input).createInput();
 
 		//Setup my OSC JUNK
 		oscP5 = new OscP5(this, 8080);
@@ -158,16 +176,12 @@ public class Modulome extends processing.core.PApplet
 		oscP5.plug(this,"gridledall", "/osc/grid/led/all");
 
 
-
-
-
-
-
 		//setSize(modsize/3,modsize/2);
 		if (xbeeOn == true){
 			startxbee();
 		}
-		frameguy.setSize(modsize, modsize);
+		
+		
 
 	}
 

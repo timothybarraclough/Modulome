@@ -354,7 +354,7 @@ public class ButtonPadModule extends AbstractModule {
 			//g.noStroke();
 			for (int i = 0; i < 16; i++) {
 
-				g.fill(getColour() + (0x00222222)*ledstate[i]); // *0 is where buttonpad[i] will indicate whether to draw it or not
+				g.fill(getColour() + (0x00222222)*buttonpad[i]); // *0 is where buttonpad[i] will indicate whether to draw it or not
 				g.rect(x2 + getmodsize()/20 + 2, y + getmodsize()/20 + 2, getmodsize()/5, getmodsize()/5);
 				x2+= (getmodsize()/10) + (getmodsize()*2/15);
 				if (x2 >= (x+getmodsize()*4/5)) {
