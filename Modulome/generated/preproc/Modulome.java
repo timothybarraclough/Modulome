@@ -220,8 +220,8 @@ public class Modulome extends processing.core.PApplet
 		case 'm' :
 			index++;
 			//0xFF337463
-			if(random(2)>3.0){
-				modules.add(new EncoderModule(index,color(random(120),random(120),random(120)) , modsize, (int)random(200), this,cp5));
+			if(random(2)<2.0){
+				modules.add(new EncoderModule(index,color(random(120),random(120),random(120)) , modsize, (int)random(200), this,cp5,midiout,midiin,oscP5,myRemoteLocation));
 
 			}
 			else{
@@ -396,7 +396,7 @@ public class Modulome extends processing.core.PApplet
 					}
 
 					else if ((addr >= 8)&&(addr < 16 )){
-						modules.add(new EncoderModule(index,c , modsize, addr, this,cp5));
+						modules.add(new EncoderModule(index,c , modsize, addr, this,cp5,midiout,midiin,oscP5,myRemoteLocation));
 					}
 
 					else if (addr >= 16) {
