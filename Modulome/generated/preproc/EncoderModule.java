@@ -188,6 +188,9 @@ public class EncoderModule extends AbstractModule{
 		MidiButMode.getItem(2).setLabel("Pan");
 		MidiButMode.getItem(3).setLabel("Note");
 
+		midichannel = getID();
+	
+	
 	}
 
 	@Override
@@ -277,10 +280,10 @@ public class EncoderModule extends AbstractModule{
 	private void outputBut() {
 		if (isMidiOn){
 			if (ButtonMode == NOTE){
-				midiout.sendNoteOn(midichannel, 1, buttonState);
+				midiout.sendNoteOn(midichannel, 40, buttonState);
 			}
 			else if (ButtonMode != NOTE){
-				midiout.sendController(midichannel, 1, buttonState);
+				midiout.sendController(midichannel, 40, buttonState);
 			}
 		}
 
@@ -292,7 +295,7 @@ public class EncoderModule extends AbstractModule{
 
 	private void outputEnc() {
 		if (isMidiOn){
-			midiout.sendController(midichannel, 2, encoderPos);
+			midiout.sendController(midichannel, 41, encoderPos);
 		}
 
 	}
