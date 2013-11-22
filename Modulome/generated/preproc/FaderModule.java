@@ -239,18 +239,18 @@ public class FaderModule extends AbstractModule {
 	public void processdata(int[] data) {
 		if (data[7] != sliders[0]) {
 			sliders[0] = data[7];
-			 if (isMidiOn) midiout.sendController(midichannel, fader1midi, sliders[0]);
+			 if (isMidiOn) midiout.sendController(midichannel, fader1midi, that.constrain(sliders[0],0,127));
 		}
 
 		if (data[8] != sliders[1]) {
 			sliders[1] = data[8];
-			 if (isMidiOn) midiout.sendController(midichannel, fader2midi, sliders[1]);
+			 if (isMidiOn) midiout.sendController(midichannel, fader2midi, that.constrain(sliders[1],0,127));
 
 		}
 
 		if (data[9] != sliders[2]) {
 			sliders[2] = data[9];
-			 if (isMidiOn) midiout.sendController(midichannel, fader3midi, sliders[2]);
+			 if (isMidiOn) midiout.sendController(midichannel, fader3midi, that.constrain(sliders[2],0,127));
 
 		}
 
